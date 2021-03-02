@@ -67,8 +67,10 @@ install:
   - git clone https://github.com/openresty/openresty.git ../ngx_openresty
 
 before_script:
-  - mysql -uroot -e 'create database ngx_test; grant all on ngx_test.* to "ngx_test"@"%" identified by "ngx_test"; flush privileges;'
+#  - mysql -uroot -e 'create database ngx_test; grant all on ngx_test.* to "ngx_test"@"%" identified by "ngx_test"; flush privileges;'
 #  - mysql -uroot -e 'create database ngx_test; grant all on ngx_test.* to "ngx_test"@"%" ; flush privileges;'
+  - mysql -uroot -e 'create database ngx_test'
+  - mysql -uroot -e '; grant all on ngx_test.* to "ngx_test"@"%" identified by "ngx_test"; flush privileges;'
   - psql -c "create database ngx_test;" -U postgres
   - psql -c "create user ngx_test with password 'ngx_test';" -U postgres
   - psql -c "grant all privileges on database ngx_test to ngx_test;" -U postgres
